@@ -71,5 +71,32 @@ cd pkg
 npm ln
 cd ../../use-greeting
 npm i
-node index.js
+node .
 ```
+
+
+## メモ
+
+```bash
+wasm-pack build --target nodejs
+```
+と
+```bash
+wasm-pack build --target web
+```
+の違い。*.wasmは同じのが生成される。
+サポートのjs,ts,package.jsonが違う。
+
+
+## メモ2
+
+`npm link` が globalにリンクする、`npm i`すると消える、などの問題があって、
+単に `node_modules/`の下にリンク作ってほしいのだけど。
+
+
+`npm i ../greeting/pkg` が使えそうなのに、コピーになってしまう。
+
+[npm-install | npm Docs](https://docs.npmjs.com/cli/v9/commands/npm-install?v=true) の
+`npm install <folder>:` には `<folder> がプロジェクトのルート外にある場合、npm はパッケージの依存関係を <folder> ディレクトリにインストールしませんが、 <folder> へのシンボリックリンクを作成します。` とあるのだけど、どうしてもコピーになってしまう。
+
+`--install-links`もダメだし。
